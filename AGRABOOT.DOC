@@ -1,0 +1,147 @@
+
+AGRAJAG BRINGS YOU HEALTH AND HAPPINESS WITH....
+
+                                ------------
+                               * AGRABOOT 2 *
+                                ------------
+
+               PROBABLY THE BEST ANTIVIRUS IN THE WORLD!!!
+
+Hell, I feel good now. I've just coded the best goddamn antivirus bootsector
+there ever was, and I've tested it and it works!!! I have tested it on 4 meg
+machines now, so it's avoided the sort of error that cropped up in the Medway
+Boys Protector 3!
+
+
+* What should be in this archive *
+
+        AGRABOOT.PRG            The installer program
+        AGRABOOT.DOC            You're reading this!
+
+Don't spread AGRABOOT 2 without this DOC file please! This program is Public
+Domain- please spread it as widely as possible!
+
+I'm still not too sure if it's Falcon compatible, though!
+
+
+* What AGRABOOT 2 does *
+
+The problem of bootsector viruses is pretty widespread, especially amongst
+people who swap PD and shareware programs, often without checking their disks
+for viruses. (Thankfully most PD Libraries and bulletin board systems are
+more careful.) Viruses can range from the kind that can ruin valuable data,
+such as Kobald virus, to just plain annoying, like the Ghost virus. More ways
+are being sought to stop the spread of this problem.
+
+Basically a bootsector virus is a program hidden in the bootsector which stays
+in memory and writes itself to the bootsector of another disk when it is
+accessed. A bootsector can be executable for many reasons, for example to
+load a game or a demo, so if a disk bootsector is seen to be executable, it
+might NOT necessarily be a virus. It is NOT advisable to try and immunise a
+disk such as a games disk or demo disk, as you might not be able to load it!
+
+You might already be familiar with the concept of an antivirus bootsector.
+This is basically a small program installed in the bootsector, in a similar
+way to a virus, but does not spread like a virus. It might display a message
+such as 'This disk is virus free!' at startup. This will by itself stop many
+viruses, as many of them don't write to already executable bootsectors.
+However there are unfortunately some viruses (Such as the 'B' strain of Ghost
+virus) which overwrite ANY bootsector, whether it's a simple blank disk, or
+your favourite game. So, as a result, other more complex antivirus
+bootsectors have been coded.
+
+Some test for viruses in memory. There are viruses (such as Ghost) that have
+been programmed to stay in memory after a reset and re-activate before
+booting. They can either use 'reset vector' or 'reset resident' code. As a
+result, bootsectors like the Medway Boys Protectors, which check for such
+code, have been coded. There is also another type of antivirus bootsector
+which stays in memory like a virus and flashes the screen when a disk with
+an executable bootsector is accessed.
+
+AGRABOOT 2 does both and more!
+
+
+* AGRABOOT 2 features- all in 512 bytes! *
+
+AGRABOOT 1 was based a bit on the testing routine of the old 'English
+Antivrus', but was mostly coded by myself. It also included the unique feature
+of flashing in red at suspicious looking executable bootsectors!!!
+
+AGRABOOT 2 continues this feature, but also features an improved testing
+routine for reset-resident programs!!! If there is a reset-resident program
+in memory, you are given the opportunity of clearing it from memory. This
+means that my antivirus bootsector is effectively immune to Ghost at last!
+
+I might as well explain my reasoning about flashing at bootsectors. Most
+antivirus bootsectors are either of the type that will check for reset
+programs or flash at a bootsector if it's executable. (Mine does both!) But
+now you have a situation where every PD disk has an antivirus bootsector, or
+a DMA loader, which means that the normal sort of flashing antivirus will
+flash at well nigh every disk you choose to put in your drive!!!!
+
+My antivirus will flash at executable bootsectors, but will flash RED at very
+suspicious bootsectors which which are almost certainly viruses. Please note
+that this is not a foolproof system. For example, Fun and Oli virus will not
+register as suspicious, but WILL flash the screen anyway. However, most
+viruses I have tested will show up.
+
+
+* Installing AGRABOOT 2 *
+
+This is really quite simple. You just run AGRABOOT.PRG, and insert the disk
+you wish to install the AGRABOOT 2 bootsector on. Again, don't do this with
+a game or a demo disk! You are given the choice of either installing AGRABOOT
+2 on a disk (key A) or making a clean non-excutable sector (key C).
+
+
+* Any suggestions? *
+
+Possible improvements for AGRABOOT 3!
+1) Shorten the flashing time. (Suggested by Wheee the Fibble)
+2) Inbetweeny flash (eg orange for a little bit suspicious!) This would
+   catch out Oli and Fun viruses!
+3) Compatibility with Mono monitors?
+
+If there are any other suggestions or anything else, contact:
+        Michael James,
+        79 Norse Road,
+        Glasgow G14 9EF.
+
+Also I have access to email before 30th June at
+
+        m.james@vme.gla.ac.uk
+
+                or
+
+        m.james%vme.gla.ac.uk@nsf.ac.uk
+
+I use the second one when I'm send text files to myself from Internet hosts
+so if you have trouble getting through, use that one.
+
+Have a nice virus free time.....
+
+Thanks to - the writer of the original 'English Antivirus' ('HN0'?) for the
+original inspiration for this boot!
+Iain and Peter of Pheonix PDL Glasgow for getting me into writing for
+bootsectors in a round about sort of way - ie my idea of putting a bootsector
+title for their Phoenix PDL Games Menu (Which I also coded!)
+Zuul of ESC - for their virus killer (The best!) - It was the only way (honest)
+that I could install Ghost and other virus onto one of disks for testing
+Agraboot!!!!
+Wheee the Fibble- for 'constructive' criticism.
+
+Greetings go to : Phoenix PDL (long may it reign!!), Axe Man, Wheee the Fibble,
+Colin of ACO, Neil of The Gap, Dimension Zero esp Michael Lynn, Network Trash
+esp Torg and 6025, Hopeless Lamers esp Deathslayer & Bip (Yes, I will get the
+demo finished!!), the soon to be ex-Pres. and ex-SVP of GUSRC, everybody in
+GUSNA, and everyone else in the entire multidimensional infinity of all
+creation.
+
+A special HI to everybody I met at the Ripped Off party!
+
+(Agrajag 5/6/92.)
+
+Updated (10/3/93)
+
+
+

@@ -1,0 +1,65 @@
+AGRAJAG BRINGS YOU HEALTH AND HAPPINESS WITH....
+
+              ---------------------------------------------
+
+              *   A   G   R   A   B   O   O   T       2   *
+
+              ---------------------------------------------
+
+               PROBABLY THE BEST ANTIVIRUS IN THE WORLD!!!
+
+Hell, I feel good now. I've just coded the best goddamn antivirus bootsector
+there ever was, and I've tested it and it works!!! I haven't tested it on 4
+megs yet, but I've been trying to avoid the sort of error that cropped up in
+the Medway Boys Protecter 3, so it SHOULD work.
+
+AGRABOOT 1 was based a bit on the testing routine of the old 'English
+Antivrus', but was mostly coded by myself. It also included the unique feature
+of flashing in red at suspicious looking executable bootsectors!!!
+
+AGRABOOT 2 continues this feature, but also features an improved testing
+routine for reset-resident programs!!! If there is a reset-resident program
+in memory, you are given the opportunity of clearing it from memory. This
+means that my antivirus bootsector is effectively immune to Ghost at last!
+
+I might as well explain my reasoning about flashing at bootsectors. Most
+antivirus bootsectors are either of the type that will check for reset
+programs or flash at a bootsector if it's executable. (Mine does both!) But
+now you have a situation where every PD disk has an antivirus bootsector, or
+a DMA loader, which means that the normal sort of flashing antivirus will
+flash at well nigh every disk you choose to put in your drive!!!!
+
+My antivirus will flash at executable bootsectors, but will flash RED at very
+suspicious bootsectors which which are almost certainly viruses. Please note
+that this is not a foolproof system. For example, Fun and Oli virus will not
+register as suspicious. However, most viruses I have tested will show up.
+
+If there are any suggestions or anything else, contact:
+        Michael James,
+        79 Norse Road,
+        Glasgow G14 9EF.
+
+        Tel (reasonable times!) (041) 954 4981.
+
+
+Have a nice virus free time.....
+
+Thanks to - the writer of the original 'English Antivirus' ('HN0'?) for the
+original inspiration for this boot!
+Iain and Peter of Pheonix PDL Glasgow for getting me into writing for
+bootsectors in a round about sort of way - ie my idea of putting a bootsector
+title for their Phoenix PDL Games Menu (Which I also coded!)
+Zuul of ESC - for their virus killer (The best!) - It was the only way (honest)
+that I could install Ghost and other virus onto one of disks for testing
+Agraboot!!!!
+
+Greetings go to : Phoenix PDL (long may it reign!!), Axe Man, Wheee the Fibble,
+Colin of ACO, Neil of The Gap, Dimension Zero esp Michael Lynn, Network Trash
+esp Torg and 6025, Hopeless Lamers esp Deathslayer & Bip (Yes, I will get the
+demo finished!!), the soon to be ex-Pres. and ex-SVP of GUSRC, everybody in
+GUSNA and co. esp Colin, Dereck, Bedi, and everyone else in the entire
+multidimensional infinity of all creation.
+
+(Agrajag 5/6/92.)
+
+
