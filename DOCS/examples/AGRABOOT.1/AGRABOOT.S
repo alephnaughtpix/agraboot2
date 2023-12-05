@@ -118,7 +118,7 @@ check	movea.l	$4c6,a0 		bootsector store
 	lea	virtab(pc),a1		table of hex codes.
 .loop2	move	(a0),d3
 	move	(a1)+,d4		try 1 - trap #13 rwabs
-	cmp.	d3,d4
+	cmp.w	d3,d4
 	bne.s	.again
 	addq	#1,d0
 	bra.s	.loop2
@@ -133,7 +133,8 @@ check	movea.l	$4c6,a0 		bootsector store
 	subq	#1,d0
 	bra.s	.loop1
 
-virtab	dc.w	4,9
+virtab
+	dc.w	4,9
 	dc.w	$4e4d,$4e4e
 
 get_ready

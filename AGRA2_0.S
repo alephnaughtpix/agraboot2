@@ -130,15 +130,7 @@ get_bootcode:
 	beq	    .end
     clr.b	(a1)+
     bra	    .clear_loop
-
-; 394:	dc	17481
-; 396:	subq	#1,a3
-; 398:	movea.l	d5,a0
-; 400:	addq	#1,(a2)
-; 402:	dc	20306
-; 404:	move.l	-(a1),-(a0)
-; 406:	move.l	-(a0),-(a0)
-; 408:	movep	3338(a2),d6
+    rts
 
 txt_disk_error:
     dc.b    13,10,'DISK ERROR!!!',0   
@@ -152,42 +144,22 @@ txt_installed:
 txt_choose_boot:
     dc.b    'Press <A> for AGRABOOT or <N> for clean bootsector.',13,10,0
     even
-; 558:	dc	25971
-; 560:	dc	29472
-; 562:	movea	d1,a6
-; 564:	move	-(a0),d7
-; 566:	dc	26223
-; 568:	moveq	#32,d1
-; 570:	dc	16711
-; 572:	addq	#1,d1
-; 574:	dc	16975
-; 576:	dc	20308
-; 578:	movea.l	29216(a7),a0
-; 582:	movea	a6,a6
-; 584:	move	-(a0),d7
-; 586:	dc	26223
-; 588:	moveq	#32,d1
-; 590:	bls.s	700
-; 592:	dc	25953
-; 594:	bgt.s	628
-; 596:	dc	25199
-; 598:	ble.s	.reset_proof_found
-; 600:	dc	29541
-; 602:	bls.s	720
-; 604:	ble.s	720
-; 606:	move.l	a5,d7
-; 608:	dc	2560
 
 c16regs		        equ	$ffff8240
+soundchip	        equ	$ffff8800
 mem_phystop         equ	$42e
 reset_vector_valid  equ	$426
 system_boot         equ	$4
+
+memory_4meg_top         equ	$3ffffc
 
 reset_vector_magic      equ	$31415926
 reset_resident_magic    equ	$12123456
 bootsector_magic        equ	$1234
 
-    opt     p+
+bootsector_buffer_start	equ	agraboot_code-$1e
+
+    opt     o+,p+
 
 agraboot_code:
     clr.w   c16regs+2.w
@@ -197,21 +169,21 @@ agraboot_code:
     move	#9,-(a7)	; Cconws
     trap	#1		; Gemdos
     addq.l	#6,a7
-    lea	    580(pc),a0
+    lea	    bootsector_buffer_start(pc),a0
     movea.l	$4c6.w,a1
-    lea	    600(a1),a1
+    lea	    3*512(a1),a1
     movea.l	a1,a2
-    move	#127,d0
+    move	#(512/4)-1,d0
 .copy_code:	
     move.l	(a0)+,(a1)+
     dbf 	d0,.copy_code
-    jmp	    176(a2)
+    jmp	    install_bpb-bootsector_buffer_start(a2)
 
 scan_for_reset_code:	
     lea	    reset_vector_valid.w,a5
     movea.l mem_phystop.w,a0
     movea.l system_boot.w,a6
-    cmpa.l	#$3ffffc,a0
+    cmpa.l	#memory_4meg_top,a0
     ble.s	.memory_scan
     lea	    -4(a0),a0
 .memory_scan:
@@ -261,7 +233,7 @@ old_bpb:
     movem.l	d0-d4/a0-a2,-(a7)
     movea.l	$4c6.w,a2                           ; Bootsector in a2
     movea.l	a2,a0
-    move	#256-1,d1
+    move	#(512/2)-1,d1
     moveq	#0,d0
 .checksum_loop:	
     add	    (a0)+,d0
@@ -269,7 +241,7 @@ old_bpb:
     cmp	    #bootsector_magic,d0
     bne	    .bootsector_not_executable
     movea.l	a2,a0
-    adda	#428,a0
+	adda	#(txt_agraboot_name-bootsector_buffer_start)+2,a0	; At this point, should be 'AGRABOOT'
     cmpi.l	#'AGRA',(a0)+
     bne.s	.check_bootsector
     cmpi.l	#'BOOT',(a0)+
@@ -308,9 +280,8 @@ old_bpb:
     bra.s	.scan_loop1
 
 warning_values:	
-    ori.b	#9,d4
-    trap	#13		; Bios
-    trap	#14		; Xbios
+    dc.w	4,9
+    dc.w    $4e4d,$4e4e
 
 end_scan:	
     lea	    c16regs.w,a1
@@ -323,7 +294,7 @@ end_scan:
 .executable_warn:
     eori	#$777,(a1)
 .ring_bell:
-    lea	    -30720.w,a0
+    lea	    soundchip.w,a0
     move.l	#$05000100,(a0)
     move.l	#$0A001000,(a0)
     move.l	#$0C00A000,(a0)
@@ -341,6 +312,7 @@ txt_agraboot_intro_message:
     dc.b    27,'b1'         ; Set text pen to colour 1
     dc.b    27,'E'          ; Clear screen
     dc.b    27,'Y',32,46
+txt_agraboot_name:
     dc.b    'AGRABOOT 2'
     dc.b    27,'Y',39,40
     dc.b    'Flash = executable boot'
